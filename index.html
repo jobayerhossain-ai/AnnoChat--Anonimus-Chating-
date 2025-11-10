@@ -1,0 +1,168 @@
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>AnonChat — Premium Messenger UI</title>
+    <!-- ⚡ Dynamic Neon Gradient Favicon -->
+    <link id="dynamicFavicon" rel="icon" type="image/png">
+    <script>
+        // 🧠 Generate neon logo favicon via canvas (no image file needed)
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+
+            // gradient background (matches logo style)
+            const gradient = ctx.createLinearGradient(0, 0, 64, 64);
+            gradient.addColorStop(0, '#007bff');
+            gradient.addColorStop(1, '#00d4ff');
+
+            // background circle
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(32, 32, 28, 0, Math.PI * 2);
+            ctx.fill();
+
+            // lightning bolt ⚡ symbol
+            ctx.font = 'bold 40px "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText('⚡', 32, 36);
+
+            // assign to favicon
+            const favicon = document.getElementById('dynamicFavicon');
+            favicon.href = canvas.toDataURL('image/png');
+        });
+    </script>
+    <!-- Tailwind for utilities, but we use custom CSS for the look -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#6C7BFF">
+</head>
+<body>
+    <div class="app-root"></div>
+        <!-- Centered chat card -->
+        <div class="chat-shell" role="application" aria-label="AnonChat">
+            <header class="chat-header">
+                <div class="brand">
+                    <div class="logo">⚡</div>
+                    <div class="title">
+                        <div class="name">AnonChat</div>
+                        <div class="subtitle">Realtime • Anonymous • Portfolio</div>
+                    </div>
+                </div>
+                <div class="meta">
+                    <div id="userName" class="user">You: Guest</div>
+                </div>
+            </header>
+            <section id="messages" class="messages" aria-live="polite" role="log"></section>
+            <div id="typingIndicator" class="typing hidden">Someone is typing<span class="dots">…</span></div>
+            <!-- Floating composer (white card) -->
+            <div id="composer" class="composer">
+                <div class="composer-card">
+                    <div class="composer-main">
+                        <div id="mediaPreview" class="media-preview hidden">
+                            <img id="mediaPreviewImg" src="" alt="preview" />
+                            <button id="cancelMedia" class="x-btn" aria-label="Cancel media">✖</button>
+                        </div>
+                        <textarea id="messageInput" placeholder="Write a message. Shift+Enter for newline. Enter to send." rows="1" aria-label="Message input"></textarea>
+                        <div class="helper-row">
+                            <div id="helperLeft"></div>
+                            <div id="charCount" class="char hidden"></div>
+                        </div>
+                    </div>
+                    <div class="composer-actions">
+                        <input id="imageInput" type="file" accept="image/*" class="hidden" />
+                        <button id="sendBtn" class="send-btn" aria-label="Send message">➤</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 🌟 Welcome Popup -->
+            <div id="welcomePopup" class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50 hidden">
+                <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-[90%] text-center p-6 relative animate-fadeInUp border border-blue-100">
+                    <button id="closePopup" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition text-xl font-bold">✖</button>
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h2 class="text-xl font-semibold text-gray-800">Welcome to <span class="text-blue-600">AnonChat</span></h2>
+                    <p class="text-gray-500 mt-2 text-sm leading-relaxed">
+                        Chat instantly with anyone — no sign up, fully anonymous, real-time.
+                    </p>
+                    <button id="startChatBtn" class="mt-5 bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-5 py-2.5 rounded-full font-semibold shadow-md hover:shadow-lg transition">
+                        Start Chatting 🚀
+                    </button>
+                </div>
+            </div>
+            <!-- Emoji panel -->
+            <div id="emojiPanel" class="emoji-panel hidden" aria-hidden="true"></div>
+            <!-- Scroll-to-bottom button -->
+            <button id="scrollToBottom" class="scroll-btn hidden" aria-label="Scroll to latest">↓</button>
+        </div>
+        <!-- Footer / Developer -->
+        <footer class="site-footer" aria-label="Site footer">
+            <style>
+                :root { --accent: #6C7BFF; --muted: rgba(15,23,42,0.6); --bg: rgba(12,18,36,0.02); }
+                .site-footer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 12px;
+                    padding: 12px 16px;
+                    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+                    font-size: 13px;
+                    color: var(--muted);
+                    background: var(--bg);
+                    border-radius: 10px;
+                    margin-top: 18px;
+                }
+                .site-footer .footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+                .site-footer a {
+                    color: inherit;
+                    text-decoration: none;
+                    padding: 6px 8px;
+                    border-radius: 8px;
+                    transition: color .16s ease, background .16s ease, transform .08s ease;
+                    -webkit-tap-highlight-color: transparent;
+                }
+                .site-footer a:hover {
+                    color: var(--accent);
+                    background: rgba(108,123,255,0.08);
+                    transform: translateY(-1px);
+                    text-decoration: none;
+                }
+                .site-footer a:focus {
+                    outline: 3px solid rgba(108,123,255,0.14);
+                    outline-offset: 3px;
+                }
+                .site-footer .footer-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                @media (max-width: 420px) {
+                    .site-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+                }
+            </style>
+            <div class="footer-content">
+                <div class="footer-brand" aria-hidden="true">
+                    <span class="logo" style="font-size: 16px">⚡</span>
+                    <span class="brand-name">AnonChat</span>
+                </div>
+                <div>
+                    Developed by
+                    <a id="devLink" href="https://github.com/jobayerhossain-ai" target="_blank" rel="noopener noreferrer" aria-label="Open Jobayer Hossain's GitHub (opens in new tab)">
+                        Jobayer Hossain
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Script (module) -->
+    <script type="module" src="js/script.js" defer></script>
+</body>
+</html>
