@@ -1,24 +1,23 @@
-# ⚡ AnonMessenger — Real-Time Anonymous Chat App
+# ⚡ AnonChat — Realtime Anonymous Chat
 
-> A frontend-only Messenger-style chat app built with **HTML, CSS (Tailwind)**, **JavaScript**, and **Firebase**.
-> Features public group chat, private messages, image/voice sharing, live presence, and theme toggle — all **free** and **no backend required**.
+AnonChat is a fully responsive, Firebase-powered real-time group chat app.  
+Built with HTML, Tailwind, and pure JavaScript — no frameworks, no dependencies.  
+Features a ChatGPT-style UI with neon gradients, smooth message streaming, and instant communication.
 
----
+🚀 **Key Features**
+- 💬 Real-time group and private chat via Firebase Realtime Database  
+- ✨ Modern ChatGPT-like UI with neon theme and glassmorphism  
+- 😊 Emoji support with proper formatting (Shift+Enter new lines)  
+- 📱 100% mobile, tablet, and desktop responsive  
+- ⚡ Dynamic welcome popup & live theme styling  
+- 🔐 Anonymous login — no signup, no data stored  
+- 🪄 Auto message cleanup and presence tracking  
 
-## ✨ Features
+🧩 **Tech Stack**
+- HTML5 / Tailwind CSS / JavaScript (ES Modules)
+- Firebase (Realtime Database + Storage)
+- Responsive design using Flexbox and modern CSS
+- Hosted on **GitHub Pages**
 
-✅ Real-time **public group chat**  
-✅ **Private 1-to-1** conversations (click any user)  
-✅ **Anonymous users** (no login required)  
-✅ **Image upload** (Firebase Storage)  
-✅ **Voice message recording**  
-✅ **Dark / Light glass theme toggle**  
-✅ **Online presence tracking**  
-✅ Works across **multiple devices instantly**  
-✅ 100% **Frontend Only** — free forever  
-✅ Host easily on **GitHub Pages**
-
----
-
-## 🧱 Folder Structure
-
+👨‍💻 **Developer**
+Built with ❤️ by **[Jobayer Hossain](https://github.com/jobayerhossain)**  
