@@ -20,4 +20,4 @@ Features a ChatGPT-style UI with neon gradients, smooth message streaming, and i
 - Hosted on **GitHub Pages**
 
 👨‍💻 **Developer**
-Built with ❤️ by **[Jobayer Hossain](https://github.com/jobayerhossain)**  
+Built with ❤️ by **[Jobayer Hossain](https://github.com/jobayerhossain-ai/)**  
